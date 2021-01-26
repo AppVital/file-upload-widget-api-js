@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!--Script-->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.appvital.com/app/fpicker/1.0.0/fpicker.min.js"></script>
+    <script src="./js/app.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="single-tab"
+            data-toggle="tab"
+            href="#single"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
+            >Single File Upload</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="multi-tab"
+            data-toggle="tab"
+            href="#multi"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+            >Multi File Upload</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="thumb-tab"
+            data-toggle="tab"
+            href="#thumb"
+            role="tab"
+            aria-controls="thumb"
+            aria-selected="false"
+            >Generate Thumbnails</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="watermark-tab"
+            data-toggle="tab"
+            href="#watermark"
+            role="tab"
+            aria-controls="watermark"
+            aria-selected="false"
+            >Apply Watermark</a
+          >
+        </li>
+      </ul>
+      <div class="tab-content pt-4" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="single"
+          role="tabpanel"
+          aria-labelledby="single-tab"
+        >
+          <script>
+            let singleFileUpload = {
+              multiple: false,
+              onUploadDone: filepicker_callback,
+              outputfileoptions: {
+                width: 500,
+                height: 281,
+                resizetype: "fit",
+                resizeconflict: "crop",
+                storage: [
+                  {
+                    code: "AWS-S3-Storage-Demo",
+                    path: "/file-picker-demo/",
+                  },
+                ],
+              },
+              inputfileoptions: {
+                allowedfileformats:
+                  "jpg,jpeg,gif,bmp,png,zip,pdf,doc,docx,txt,xml",
+                note:
+                  "File type restricted to: JPG, JPEG, PNG, GIF, BMP, PDF, DOC, DOCX, TXT, XML and ZIP.",
+              },
+            };
+          </script>
+          <button
+            id="btnInvoke"
+            class="btn btn-success m-2"
+            onclick="openFilepicker(singleFileUpload)"
+          >
+            Test Drive: Single File Upload
+          </button>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="multi"
+          role="tabpanel"
+          aria-labelledby="multi-tab"
+        >
+          <script>
+            let multiFileUpload = {
+              multiple: true,
+              onUploadDone: filepicker_callback,
+              outputfileoptions: {
+                width: 500,
+                height: 281,
+                resizetype: "fit",
+                resizeconflict: "crop",
+                storage: [
+                  {
+                    code: "AWS-S3-Storage-Demo",
+                    path: "/file-picker-demo/",
+                  },
+                ],
+              },
+              inputfileoptions: {
+                allowedfileformats:
+                  "jpg,jpeg,gif,bmp,png,zip,pdf,doc,docx,txt,xml",
+                note:
+                  "File type restricted to: JPG, JPEG, PNG, GIF, BMP, PDF, DOC, DOCX, TXT, XML and ZIP.",
+              },
+            };
+          </script>
+          <button
+            id="btnInvoke"
+            class="btn btn-success m-2"
+            onclick="openFilepicker(multiFileUpload)"
+          >
+            Test Drive: Multi File Upload
+          </button>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="thumb"
+          role="tabpanel"
+          aria-labelledby="thumb-tab"
+        >
+          <script>
+            let thumbs = {
+              multiple: true,
+              maxfiles: 3,
+              onUploadDone: filepicker_callback,
+              outputfileoptions: {
+                width: 500,
+                height: 281,
+                resizetype: "fit",
+                resizeconflict: "crop",
+                thumbnails: [
+                  {
+                    width: 400,
+                    height: 225,
+                    resizetype: "fit",
+                    resizeconflict: "crop",
+                    fileformat: "png",
+                    filenamesuffix: "thumb400",
+                  },
+                  {
+                    width: 200,
+                    height: 200,
+                    resizetype: "fit",
+                    resizeconflict: "pad",
+                    backgroundcolor: "#6D7E8F",
+                    fileformat: "png",
+                    filenamesuffix: "thumb200",
+                  },
+                  {
+                    width: 50,
+                    height: 50,
+                    resizetype: "fit",
+                    resizeconflict: "crop",
+                    fileformat: "png",
+                    filenamesuffix: "thumb50",
+                  },
+                ],
+                storage: [
+                  {
+                    code: "AWS-S3-Storage-Demo",
+                    path: "/file-picker-demo/",
+                  },
+                ],
+              },
+              inputfileoptions: {
+                allowedfileformats: "jpg,jpeg,gif,bmp,png",
+              },
+            };
+          </script>
+          <button
+            id="btnInvoke"
+            class="btn btn-success m-2"
+            onclick="openFilepicker(thumbs)"
+          >
+            Test Drive: Generate Thumbnails
+          </button>
+        </div>
+
+        <div
+          class="tab-pane fade"
+          id="watermark"
+          role="tabpanel"
+          aria-labelledby="watermark-tab"
+        >
+          <script>
+            let watermark = {
+              multiple: false,
+              onUploadDone: filepicker_callback,
+              outputfileoptions: {
+                width: 500,
+                height: 281,
+                resizetype: "fit",
+                resizeconflict: "crop",
+                watermark: {
+                  type: "image",
+                  url:
+                    "https://apv-customer.s3.amazonaws.com/watermark/demo-watermark.png", //your watermakr image url here
+                  position: "bottomright",
+                  margin: 30,
+                  opacity: 0.8,
+                  scale: 1.0, // 0.1-10
+                  rotate: 0, //0-360
+                  repeat: "no-repeat", //repeat | repeat-top| repeat-bottom| repeat-middle | repeat-brick
+                },
+                storage: [
+                  {
+                    code: "AWS-S3-Storage-Demo", //your storage code/alias here
+                    path: "/file-picker-demo/", //your storage folder path, if any
+                  },
+                ],
+              },
+              inputfileoptions: {
+                allowedfileformats:
+                  "jpg,jpeg,gif,bmp,png,zip,pdf,doc,docx,txt,xml",
+                note:
+                  "File type restricted to: JPG, JPEG, PNG, GIF, BMP, PDF, DOC, DOCX, TXT, XML and ZIP.",
+              },
+            };
+          </script>
+          <button
+            id="btnInvoke"
+            class="btn btn-success m-2"
+            onclick="openFilepicker(watermark)"
+          >
+            Test Drive: Generate Thumbnails
+          </button>
+        </div>
+      </div>
+
+      <div id="fileContainer" class="container mt-5"></div>
+    </div>
+  </body>
+</html>
