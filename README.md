@@ -2,6 +2,7 @@
 <h1 align="center">
   appvital-file-upload-widget-api-js
 </h1>
+
 <p align="center">
   Javascript wrapper library to quickly integrate Appvital File picker & cloud uploader in your application with just few lines of code.
 </p>
