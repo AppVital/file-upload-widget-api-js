@@ -1,9 +1,9 @@
 <p align="center"><img src="https://appvital.com/images/logo-appvital-dark-top.png" align="center" height="100"/></p>
 <h1 align="center">
-  file-upload-widget-api-js
+  appvital-file-upload-widget-api-js
 </h1>
 <p align="center">
-  Javascript wrapper library to quickly integrate Appvital Filepicker in your application with just few lines of code.
+  Javascript wrapper library to quickly integrate Appvital File picker & cloud uploader in your application with just few lines of code.
 </p>
 <p align="center">
   <img src="https://cdn.appvital.com/appsite/static/appvital-file-picker-cloud-uploader.gif"  align="center" height="340"/>
@@ -13,14 +13,15 @@
 
 *   **Drag & Drop** or **Copy & Paste** any file
 *   Pick files from **multiple sources** including popular **online file shares**
-*   **Upload** files straight to **your own** Amazon S3, Azure Bob & SFTP storages
+*   **Upload** files straight to **your own** cloud storages: Amazon S3 bucket, Azure Blob container
+*   Manage large file uploads efficiently using **multipart chunk** uploads.
 *   Crop, rotate, flip and **enhance photos** to perfection with **built-in photo editor**
 *   Generate **thumbnails**, apply text or image **watermarks**
 *   **Complete control** with configurable options and **much more**
 
 ## Demo/Examples
 
-See file picker in [action here](https://appvital.com/example/file-picker) with example configurations demonstrating various features.
+See file picker in [action here](https://appvital.com/example/cloud-file-uploader) with example configurations demonstrating various features.
 
 ## Quick Start
 
@@ -43,11 +44,11 @@ UMD module
   const picker = new ApvFilePicker('apikey');
 </script>
 ```
-Picker can be initialized by calling picker.open(options). Options for the picker are [documented here](https://appvital.com/docs/file-picker).
+Picker can be initialized by calling picker.open(options). Options for the picker are [documented here](https://appvital.com/docs/file-uploader).
 
 ## Documentation
 
-You can find further documentation on available filepicker options and configuration details here at https://appvital.com/docs/file-picker#Quickstart-Javascript
+You can find further documentation on available filepicker options and configuration details here at https://appvital.com/docs/file-uploader#Quickstart-Javascript
 
 ## Contributing
 
